@@ -1,0 +1,19 @@
+{
+  "name": "btvn_week09",
+  "version": "1.0.0",
+  "description": "tao tai khoan, dang nhap, dang xuat, ghi nho dang nhap, quan ly categories, xem danh sach product ... su dung Postgres",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dat-TG/Web_W9.git"
+  },
+  "author": "20120454",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dat-TG/Web_W9/issues"
+  },
+  "homepage": "https://github.com/Dat-TG/Web_W9#readme"
+}
