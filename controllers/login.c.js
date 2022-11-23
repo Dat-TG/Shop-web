@@ -12,23 +12,24 @@ exports.check=async(req, res, next)=>{
         var user=req.body;
         //console.log(user.username);
         //console.log(user.password);
-        var arrUser=await userM.getAll();
-        var isExist=false;
-        for (let i=0;i<arrUser.length;i++) {
-            if (arrUser[i].f_Username===user.username) {
-                isExist=true;
-                if (arrUser[i].f_Password!=user.password) {
-                    res.render('LogIn',{errWrongPassword:"block",errWrongUsername:"none"});
+        //console.log(req.session.uid);
+        userM.getByUsername(user).then(rs=>{
+            //console.log(rs);
+            if (rs.length==0) {
+                res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"block", username:user.username, password:user.password});
+                return false;
+            }
+            else {
+                if (rs[0].f_Password!=user.password) {
+                    res.render('LogIn',{errWrongPassword:"block",errWrongUsername:"none", username:user.username, password:user.password});
                     return false;
                 }
+                req.session.uid=rs[0].f_ID;
+                //console.log(req.session.uid, rs[0].f_ID);
+                res.redirect('/');
+                return true;
             }
-        }
-        if (!isExist) {
-            res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"block"});
-            return false;
-        }
-        res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"none"});
-        return true;
+        })
     } catch(err) {
         next(err);
     }

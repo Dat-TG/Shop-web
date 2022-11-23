@@ -12,15 +12,17 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="username" name="username" alt="User" class="form-control" required/>
+                                            <input type="text" id="username" name="username" alt="User" class="form-control" value="{{data.username}}" required/>
                                             <label class="form-label" for="username">Username</label>
                                         </div>
                                     </div>
 
+                                    <p class="text-danger d-{{display}}">Username đã tồn tại</p>
+
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="name" name="name" class="form-control" required/>
+                                            <input type="text" id="name" name="name" class="form-control" value="{{data.name}}" required/>
                                             <label class="form-label" for="name">Your name</label>
                                         </div>
                                     </div>
@@ -29,7 +31,7 @@
                                         <i class="fa fa-birthday-cake fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="date" id="dob" name="dob"
-                                                class="form-control" required/>
+                                                class="form-control" value="{{data.dob}}" required/>
                                             <label class="form-label" for="dob">Date of birth</label>
                                         </div>
                                     </div>
@@ -37,7 +39,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="email" name="email" class="form-control" required />
+                                            <input type="email" id="email" name="email" class="form-control" value="{{data.email}}" required />
                                             <label class="form-label" for="email">Your Email</label>
                                         </div>
                                     </div>
@@ -45,7 +47,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="password" name="password" class="form-control" required/>
+                                            <input type="password" id="password" name="password" class="form-control" value="{{data.password}}" required/>
                                             <label class="form-label" for="password">Password</label>
                                         </div>
                                     </div>
