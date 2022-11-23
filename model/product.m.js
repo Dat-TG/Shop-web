@@ -8,4 +8,8 @@ module.exports={
         const rs=db.any('SELECT * FROM "Products" WHERE "ProID"=$1', [ProID]);
         return rs;
     },
+    getByCatID: async(CatID) => {
+        const rs=db.any('SELECT * FROM "Products" WHERE "CatID"=$1', [CatID]);
+        return rs;
+    },
 }
