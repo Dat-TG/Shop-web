@@ -17,5 +17,9 @@ module.exports={
     delete: async(CatID) => {
         const rs=await db.any('DELETE FROM "Categories" WHERE "CatID"=$1', [CatID]);
         return rs;
+    },
+    update: async(CatID, CatName) => {
+        const rs=await db.any('UPDATE "Categories" SET "CatName"=$1 WHERE "CatID"=$2', [CatName, CatID]);
+        return rs;
     }
 }

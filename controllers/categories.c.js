@@ -45,3 +45,20 @@ exports.delete=async(req,res,next)=>{
         next(err);
     }
 }
+exports.edit=async(req,res,next)=>{
+    if (!req.session.uid) {
+        res.redirect('/login');
+        return false;
+    }
+    try {
+        var CatID=req.params.CatID;
+        var CatName=req.body.CatName;
+        catM.update(CatID, CatName).then(()=>{
+            setTimeout(function(){
+                res.redirect('/Categories/'+CatID);},3000);
+        });
+    }
+    catch(err) {
+        next(err);
+    }
+}
