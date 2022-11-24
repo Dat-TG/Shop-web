@@ -13,5 +13,9 @@ module.exports={
         CatID=CatID.max+1;
         const rs=await db.one('INSERT INTO "Categories"("CatID","CatName") VALUES($1, $2) RETURNING *', [CatID, CatName]);
         return rs;
+    },
+    delete: async(CatID) => {
+        const rs=await db.any('DELETE FROM "Categories" WHERE "CatID"=$1', [CatID]);
+        return rs;
     }
 }

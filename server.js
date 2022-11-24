@@ -38,6 +38,7 @@ const proM=require('./model/product.m');
 const CategoriesRouter=require('./routers/categories.r');
 const LogOutRouter=require('./routers/logout.r');
 const profileRouter=require('./routers/profile.r');
+const addCategoryRouter=require('./routers/addCategory.r')
 
 //Use static resources
 app.use(express.static(path.join(__dirname, '/public')))
@@ -71,6 +72,7 @@ app.use('/login', LoginRouter);
 app.use('/Categories',CategoriesRouter);
 app.use('/logout',LogOutRouter);
 app.use('/profile',profileRouter);
+app.use('/addCategory',addCategoryRouter);
 
 
 app.use('/', async(req, res, next) => {
@@ -89,7 +91,7 @@ app.use('/', async(req, res, next) => {
             p3list.push(plist.splice(0, 3));
         }
         //console.log(p3list);
-        res.render('home',{clist:clist, plist:p3list});
+        res.render('home',{clist:clist, plist:p3list, btn_display:"none"});
     } else {
         res.redirect('/login');
     }

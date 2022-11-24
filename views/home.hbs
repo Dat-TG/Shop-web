@@ -1,5 +1,9 @@
 {{>nav}}
 <div class="container">
+        <h1 class="mt-2">{{CatName}}</h1>
+        <button type="button" class="btn btn-danger ms-2 btn-sm d-{{btn_display}}" data-mdb-toggle="modal" data-mdb-target="#modalFormDel">Delete</button>
+        <button type="button" class="btn btn-warning ms-2 btn-sm d-{{btn_display}}">Edit</button>
+        <button type="button" class="btn btn-primary ms-2 btn-sm d-{{btn_display}}">Add Products</button>
     {{#each plist}}
     <div class="row d-flex justify-content-center">
         {{#each .}}
@@ -14,3 +18,5 @@
     </div>
     {{/each}}
 </div>
+{{>addCat}}
+{{>deleteCat}}

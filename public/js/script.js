@@ -1,5 +1,5 @@
 $(function () {
-    $("#name").on('input',function () {
+    $("#name").on('input', function () {
         var ok = checkUpperCase($(this).val());
         if (ok == 1) {
             $("#name").get(0).setCustomValidity("First letter of each word must be capitalized");
@@ -10,7 +10,7 @@ $(function () {
             $("#name").get(0).reportValidity();
         }
     });
-    $("#username").on('input',function () {
+    $("#username").on('input', function () {
         var ok = checkUserName($(this).val());
         if (ok == 0) {
             $("#username").get(0).setCustomValidity("");
@@ -29,7 +29,7 @@ $(function () {
             $("#username").get(0).reportValidity();
         }
     });
-    $("#password").on('input',function () {
+    $("#password").on('input', function () {
         var ok = checkPassWord($(this).val());
         if (ok == 1) {
             $("#password").get(0).setCustomValidity("Password must has at least 6 characters");
@@ -40,7 +40,7 @@ $(function () {
             $("#password").get(0).reportValidity();
         }
     });
-    $("#retype_password").on('input',function () {
+    $("#retype_password").on('input', function () {
         var ok = checkPassWordRetype($(this).val(), $("#password").val());
         if (ok == 1) {
             $("#retype_password").get(0).setCustomValidity("Password does not match");
@@ -50,6 +50,16 @@ $(function () {
             $("#retype_password").get(0).setCustomValidity("");
             $("#retype_password").get(0).reportValidity();
         }
+    });
+    $("#addCatForm").submit(function () {
+        var toast=document.getElementById('addCatToast');
+        var bsToast=new bootstrap.Toast(toast);
+        bsToast.show();
+    });
+    $("#delCatForm").submit(function () {
+        var toast=document.getElementById('delCatToast');
+        var bsToast=new bootstrap.Toast(toast);
+        bsToast.show();
     });
 })
 
@@ -86,7 +96,7 @@ function checkPassWord(password) {
 }
 
 function checkPassWordRetype(pass_retype, pass) {
-    if (pass_retype.length>0 && pass != pass_retype) {
+    if (pass_retype.length > 0 && pass != pass_retype) {
         return 1;
     }
     else {
