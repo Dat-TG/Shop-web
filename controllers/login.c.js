@@ -1,6 +1,10 @@
 const nodemon = require('nodemon');
 const userM=require('../model/user.m');
 exports.render= async(req, res, next) =>{
+    if (req.session.uid) {
+        res.redirect('/');
+        return true;
+    }
     try {
         res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"none"});
     } catch(err) {

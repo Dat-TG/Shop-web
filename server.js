@@ -36,6 +36,8 @@ const LoginRouter = require('./routers/login.r');
 const catM=require('./model/Categories.m');
 const proM=require('./model/product.m');
 const CategoriesRouter=require('./routers/categories.r');
+const LogOutRouter=require('./routers/logout.r');
+const profileRouter=require('./routers/profile.r');
 
 //Use static resources
 app.use(express.static(path.join(__dirname, '/public')))
@@ -67,6 +69,8 @@ app.set('views', path.join(__dirname, '/views'))
 app.use('/register', RegisterRouter);
 app.use('/login', LoginRouter);
 app.use('/Categories',CategoriesRouter);
+app.use('/logout',LogOutRouter);
+app.use('/profile',profileRouter);
 
 
 app.use('/', async(req, res, next) => {

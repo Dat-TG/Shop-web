@@ -9,6 +9,10 @@ module.exports={
         const rs=db.any('SELECT * FROM "Users" WHERE "f_Username"=$1', [data.username]);
         return rs;
     },
+    getByID: async(ID)=>{
+        const rs=db.any('SELECT * FROM "Users" WHERE "f_ID"=$1', [ID]);
+        return rs;
+    },
     add: async(data)=>{
         var f_ID=await db.one('SELECT MAX("f_ID") FROM "Users"');
         f_ID=f_ID.max+1;
