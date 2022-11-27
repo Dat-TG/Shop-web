@@ -3,16 +3,17 @@ const express = require('express')
 const session = require('express-session')
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const fs=require('fs');
 const { urlencoded } = require('express');
 const app = express()
 const port = 3000
 
 //Create database and execute sql script if database not exists
 const database = require('./model/createDatabase.m');
-database.isExists().then(isExist => {
+database.isExists().then(async(isExist) => {
     console.log(isExist);
     if (!isExist) {
-        database.create();
+        await database.create();
     }
     else {
         console.log('Database exists');
@@ -38,7 +39,8 @@ const proM=require('./model/product.m');
 const CategoriesRouter=require('./routers/categories.r');
 const LogOutRouter=require('./routers/logout.r');
 const profileRouter=require('./routers/profile.r');
-const addCategoryRouter=require('./routers/addCategory.r')
+const addCategoryRouter=require('./routers/addCategory.r');
+const DetailProductRouter=require('./routers/product.r');
 
 //Use static resources
 app.use(express.static(path.join(__dirname, '/public')))
@@ -73,6 +75,7 @@ app.use('/Categories',CategoriesRouter);
 app.use('/logout',LogOutRouter);
 app.use('/profile',profileRouter);
 app.use('/addCategory',addCategoryRouter);
+app.use('/product',DetailProductRouter);
 
 
 app.use('/', async(req, res, next) => {
