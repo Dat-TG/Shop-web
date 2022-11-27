@@ -3,12 +3,12 @@
         <h1 class="mt-2">{{CatName}}</h1>
         <button type="button" class="btn btn-danger ms-2 btn-sm d-{{btn_display}}" data-mdb-toggle="modal" data-mdb-target="#modalFormDel">Delete</button>
         <button type="button" class="btn btn-warning ms-2 btn-sm d-{{btn_display}}" data-mdb-toggle="modal" data-mdb-target="#modalFormEdit">Edit</button>
-        <button type="button" class="btn btn-primary ms-2 btn-sm d-{{btn_display}}">Add Products</button>
+        <button type="button" class="btn btn-primary ms-2 btn-sm d-{{btn_display}}" data-mdb-toggle="modal" data-mdb-target="#modalFormAddPro">Add Product</button>
     {{#each plist}}
     <div class="row d-flex justify-content-center">
         {{#each .}}
-        <div class="col-4 text-center card mt-3 mb-3 ms-3 me-3" style="width: 25vw;height:25vw">
-            <img src="/img/pid/{{ProID}}/main.jpg" width="100%" height="100%" class="ms-auto me-auto">
+        <div class="col-4 text-center card mt-3 mb-3 ms-3 me-3" style="width: 25vw;">
+            <img src="/img/pid/{{ProID}}/main.jpg" class="card-img-top" alt="{{ProID}}-{{ProName}}">
             <div class="card-body">
                 <h5 class="card-title">{{ProName}}</h5>
                 <p class="card-text">{{Price}}</p>
@@ -21,3 +21,4 @@
 {{>addCat}}
 {{>deleteCat}}
 {{>EditCat}}
+{{>addProduct}}

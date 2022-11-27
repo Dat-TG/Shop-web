@@ -62,3 +62,22 @@ exports.edit=async(req,res,next)=>{
         next(err);
     }
 }
+exports.addProduct=async(req,res,next)=>{
+    if (!req.session.uid) {
+        res.redirect('/login');
+        return false;
+    }
+    try {
+        //console.log(req.file);
+        var CatID=req.params.CatID;
+        var data=req.body;
+        //console.log(data);
+        proM.add(CatID, data).then(()=>{
+            setTimeout(function(){
+                res.redirect('/Categories/'+CatID);},3000);
+        });
+    }
+    catch(err) {
+        next(err);
+    }
+}

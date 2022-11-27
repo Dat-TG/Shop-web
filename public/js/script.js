@@ -66,6 +66,11 @@ $(function () {
         var bsToast=new bootstrap.Toast(toast);
         bsToast.show();
     });
+    $("#addProForm").submit(function() {
+        var toast=document.getElementById('addProToast');
+        var bsToast=new bootstrap.Toast(toast);
+        bsToast.show();
+    });
 })
 
 function checkUpperCase(name) {
