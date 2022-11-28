@@ -1,4 +1,6 @@
 const userM=require('../model/user.m');
+const CryptoJS=require('crypto-js');
+const hashLength=64;
 exports.render= async(req, res, next) =>{
     try {
         res.render('Register', {display:"none"});
@@ -16,6 +18,10 @@ exports.writeDB=async(req, res, next)=>{
         //console.log(user.password_retype);
         //console.log(user.checked);
         //console.log(user.dob);
+        const salt=Date.now().toString(16);
+        const pwSalt=user.password+salt;
+        const pwHashed=CryptoJS.SHA3(pwSalt, {outputLength:hashLength*4}).toString(CryptoJS.enc.Hex);
+        user.password=pwHashed+salt;
         userM.getByUsername(user).then(rs=>{
             if (rs.length==0) {
                 userM.add(user);

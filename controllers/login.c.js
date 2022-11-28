@@ -1,5 +1,7 @@
 const nodemon = require('nodemon');
 const userM=require('../model/user.m');
+const CryptoJS=require('crypto-js');
+const hashLength=64;
 exports.render= async(req, res, next) =>{
     if (req.session.uid) {
         res.redirect('/');
@@ -24,7 +26,13 @@ exports.check=async(req, res, next)=>{
                 return false;
             }
             else {
-                if (rs[0].f_Password!=user.password) {
+                const pwDb=rs[0].f_Password;
+                const salt=pwDb.slice(hashLength);
+                const pwSalt=user.password+salt;
+                const pwHashed=CryptoJS.SHA3(pwSalt, {outputLength:hashLength*4}).toString(CryptoJS.enc.Hex);
+                //console.log(user.password);
+                //console.log(pwHashed+salt);
+                if (pwDb!==(pwHashed+salt)) {
                     res.render('LogIn',{errWrongPassword:"block",errWrongUsername:"none", username:user.username, password:user.password});
                     return false;
                 }
