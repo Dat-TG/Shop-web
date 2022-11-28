@@ -13,7 +13,12 @@ exports.render = async (req, res, next) => {
         //console.log(ProID);
         //console.log(data);
         const Cat = await catM.getByID(data[0].CatID);
-        data[0].Category = Cat[0].CatName;
+        if (Cat[0] === undefined) {
+            data[0].Category = "Uncategorized - Chưa được phân loại";
+        }
+        else {
+            data[0].Category = Cat[0].CatName;
+        }
         const rs = await catM.getAll();
         var clist = rs.map((item) => {
             return { CatID: item.CatID, CatName: item.CatName }

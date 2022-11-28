@@ -8,7 +8,7 @@ exports.render= async(req, res, next) =>{
         return true;
     }
     try {
-        res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"none"});
+        res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"none", hideHF:"d-none"});
     } catch(err) {
         next(err);
     }
@@ -22,7 +22,7 @@ exports.check=async(req, res, next)=>{
         userM.getByUsername(user).then(rs=>{
             //console.log(rs);
             if (rs.length==0) {
-                res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"block", username:user.username, password:user.password});
+                res.render('LogIn',{errWrongPassword:"none",errWrongUsername:"block", username:user.username, password:user.password, hideHF:"d-none"});
                 return false;
             }
             else {
@@ -33,7 +33,7 @@ exports.check=async(req, res, next)=>{
                 //console.log(user.password);
                 //console.log(pwHashed+salt);
                 if (pwDb!==(pwHashed+salt)) {
-                    res.render('LogIn',{errWrongPassword:"block",errWrongUsername:"none", username:user.username, password:user.password});
+                    res.render('LogIn',{errWrongPassword:"block",errWrongUsername:"none", username:user.username, password:user.password, hideHF:"d-none"});
                     return false;
                 }
                 req.session.uid=rs[0].f_ID;

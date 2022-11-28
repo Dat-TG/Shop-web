@@ -77,6 +77,7 @@ $(function () {
         bsToast.show();
     });
     document.getElementById('FileE').addEventListener("change", event =>showPreview(event));
+    document.getElementById('File').addEventListener("change", event =>showPreview1(event));
     $("#delProForm").submit(function () {
         var toast = document.getElementById('delProToast');
         var bsToast = new bootstrap.Toast(toast);
@@ -130,5 +131,15 @@ function showPreview(event) {
         var preview = document.getElementById("file-ip-1-preview");
         preview.src = src;
         preview.style.display = "block";
+    }
+}
+function showPreview1(event) {
+    console.log(event.target.files.length);
+    if (event.target.files.length > 0) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-ip-2-preview");
+        preview.src = src;
+        preview.style.display = "block";
+        console.log(src);
     }
 }

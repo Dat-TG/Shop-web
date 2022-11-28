@@ -6,7 +6,8 @@
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/Categories/{{CatID}}/add-product" method="POST" id="addProForm" enctype="multipart/form-data">
+                <form action="/Categories/{{CatID}}/add-product" method="POST" id="addProForm"
+                    enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="proName" class="col-form-label">Product Name:</label>
                         <input type="text" class="form-control" id="proName" name="proName" required>
@@ -19,6 +20,10 @@
                         <label for="proQuantity" class="col-form-label">Quantity:</label>
                         <input type="number" class="form-control" id="proQuantity" name="proQuantity" required>
                         <label for="File" class="form-label">Image:</label>
+                        <div class="mb-3 preview text-center">
+                            <img id="file-ip-2-preview" src=""
+                                style="display: block;max-width: 100%;width: fit-content;height: auto;">
+                        </div>
                         <input class="form-control" type="file" id="File" accept="image/*" name="File" required>
                     </div>
                 </form>

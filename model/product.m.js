@@ -1,7 +1,7 @@
 const {pgp, db}=require('../model/DBconnection.m');
 module.exports={
     getAll: async()=>{
-        const rs=await db.any('SELECT * FROM "Products"');
+        const rs=await db.any('SELECT * FROM "Products" ORDER BY "ProID"');
         return rs;
     },
     getByID: async(ProID)=> {
