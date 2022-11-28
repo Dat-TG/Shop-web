@@ -7,7 +7,6 @@ const fs=require('fs');
 const { urlencoded } = require('express');
 const app = express()
 const port = 3000
-
 //Create database and execute sql script if database not exists
 const database = require('./model/createDatabase.m');
 database.isExists().then(async(isExist) => {
@@ -41,6 +40,8 @@ const LogOutRouter=require('./routers/logout.r');
 const profileRouter=require('./routers/profile.r');
 const addCategoryRouter=require('./routers/addCategory.r');
 const DetailProductRouter=require('./routers/product.r');
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
 
 //Use static resources
 app.use(express.static(path.join(__dirname, '/public')))

@@ -27,9 +27,119 @@
         </div>
         <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-danger ms-2 mt-2 btn-sm d-inline" data-mdb-toggle="modal"
-                data-mdb-target="#">Delete</button>
+                data-mdb-target="#modalFormDelPro">Delete</button>
             <button type="button" class="btn btn-warning ms-2 mt-2 btn-sm d-inline" data-mdb-toggle="modal"
-                data-mdb-target="#">Edit</button>
+                data-mdb-target="#modalFormEditPro">Edit</button>
         </div>
     </div>
 </section>
+
+<!--Edit Product-->
+
+<div class="modal" tabindex="-1" id="modalFormEditPro">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Product</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/product/{{data.ProID}}/edit" method="POST" id="editProForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="ProName" class="col-form-label">Product name:</label>
+                        <input type="text" class="form-control" id="ProName" name="ProName" value="{{data.ProName}}"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="TinyDes" class="col-form-label">Short description:</label>
+                        <input type="text" class="form-control" id="TinyDes" name="TinyDes" value="{{data.TinyDes}}"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="FullDes" class="col-form-label">Full Description:</label>
+                        <textarea type="text" form="editProForm" class="form-control" id="FullDes" name="FullDes" contenteditable="true" rows="4"
+                            required>{{data.FullDes}}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Price" class="col-form-label">Price:</label>
+                        <input type="number" step="any" class="form-control" id="Price" name="Price" value="{{data.Price}}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Quantity" class="col-form-label">Quantity:</label>
+                        <input type="number" class="form-control" id="Quantity" name="Quantity" value="{{data.Quantity}}"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Category:</label>
+                        <select class="form-select form-select" name="CatID">
+                            <option value="{{data.CatID}}" selected>{{data.Category}}</option>
+                            {{#each cclist}}
+                            <option value="{{CatID}}">{{CatName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="FileE" class="form-label">Image:</label>
+                        <div class="mb-3 preview text-center">
+                            <img id="file-ip-1-preview" src="/img/pid/{{data.ProID}}/main.jpg"
+                                style="display: block;max-width: 100%;width: fit-content;height: auto;">
+                        </div>
+                        <input form="editProForm" class="form-control" type="file" id="FileE" accept="image/*" name="FileE">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                <button type="submit" form="editProForm" class="btn btn-primary" data-mdb-dismiss="modal">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="editProToast" class="toast hide bg-success text-white" role="alert" aria-live="assertive"
+        aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Edit product successful
+            <br>Refresh in 3 seconds...
+        </div>
+    </div>
+</div>
+
+<!--Delete Product-->
+<div class="modal" tabindex="-1" id="modalFormDelPro">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete product</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "{{data.ProName}}"?
+                <form id="delProForm" action="/product/{{data.ProID}}/delete" method="POST">
+                    <input type="text" value="{{data.ProID}}" class="d-none">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">NO</button>
+                <button type="submit" form="delProForm" id="delProBtn" class="btn btn-primary" data-mdb-dismiss="modal">YES</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="delProToast" class="toast hide bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Delete product successful
+            <br>Refresh in 3 seconds...
+        </div>
+    </div>
+</div>

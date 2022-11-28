@@ -52,23 +52,34 @@ $(function () {
         }
     });
     $("#addCatForm").submit(function () {
-        var toast=document.getElementById('addCatToast');
-        var bsToast=new bootstrap.Toast(toast);
+        var toast = document.getElementById('addCatToast');
+        var bsToast = new bootstrap.Toast(toast);
         bsToast.show();
     });
     $("#delCatForm").submit(function () {
-        var toast=document.getElementById('delCatToast');
-        var bsToast=new bootstrap.Toast(toast);
+        var toast = document.getElementById('delCatToast');
+        var bsToast = new bootstrap.Toast(toast);
         bsToast.show();
     });
     $("#editCatForm").submit(function () {
-        var toast=document.getElementById('editCatToast');
-        var bsToast=new bootstrap.Toast(toast);
+        var toast = document.getElementById('editCatToast');
+        var bsToast = new bootstrap.Toast(toast);
         bsToast.show();
     });
-    $("#addProForm").submit(function() {
-        var toast=document.getElementById('addProToast');
-        var bsToast=new bootstrap.Toast(toast);
+    $("#addProForm").submit(function () {
+        var toast = document.getElementById('addProToast');
+        var bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+    });
+    $("#editProForm").submit(function () {
+        var toast = document.getElementById('editProToast');
+        var bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+    });
+    document.getElementById('FileE').addEventListener("change", event =>showPreview(event));
+    $("#delProForm").submit(function () {
+        var toast = document.getElementById('delProToast');
+        var bsToast = new bootstrap.Toast(toast);
         bsToast.show();
     });
 })
@@ -111,5 +122,13 @@ function checkPassWordRetype(pass_retype, pass) {
     }
     else {
         return 0;
+    }
+}
+function showPreview(event) {
+    if (event.target.files.length > 0) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-ip-1-preview");
+        preview.src = src;
+        preview.style.display = "block";
     }
 }

@@ -99,16 +99,14 @@ exports.addProduct = async (req, res, next) => {
                 }
 
                 // Everything went fine.
+                var CatID = req.params.CatID;
+                var data = req.body;
+                proM.add(CatID, data).then(() => {
+                    setTimeout(function () {
+                        res.redirect('/Categories/' + CatID);
+                    }, 3000);
+                });
             })
-            //console.log(req.file);
-            var CatID = req.params.CatID;
-            var data = req.body;
-            //console.log(data);
-            proM.add(CatID, data).then(() => {
-                setTimeout(function () {
-                    res.redirect('/Categories/' + CatID);
-                }, 3000);
-            });
         });
     }
     catch (err) {

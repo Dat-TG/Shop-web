@@ -23,4 +23,12 @@ module.exports={
         proID = proID.max + 1;
         return proID;
     },
+    update: async(ProID, data) => {
+        const rs=await db.none('UPDATE "Products" SET "ProName"=$1,"TinyDes"=$2,"FullDes"=$3,"Price"=$4,"CatID"=$5,"Quantity"=$6 WHERE "ProID"=$7', [data.ProName, data.TinyDes, data.FullDes, data.Price, data.CatID, data.Quantity,ProID]);
+        return rs;
+    },
+    delete: async(ProID)=>{
+        const rs=await db.none('DELETE FROM "Products" WHERE "ProID"=$1', [ProID]);
+        return rs;
+    }
 }
